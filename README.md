@@ -1,1 +1,1 @@
-# JobScrapper
+# HockeyDataScrapper
