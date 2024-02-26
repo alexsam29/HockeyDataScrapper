@@ -1,6 +1,6 @@
-from app.utils.csv_writer import CSVWriter
+from utils.csv_writer import CSVWriter
 
-from app.utils.scraper import Scraper
+from utils.scraper import Scraper
 
 URL = "https://www.hockey-reference.com/leagues/NHL_2024_skaters.html"
 file_name = "NHL_2024_Stats.csv"
