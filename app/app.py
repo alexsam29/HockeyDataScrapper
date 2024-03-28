@@ -18,13 +18,45 @@ writer.write(table.getRows())
 reader = CSVReader(file_name)
 csv_stats = reader.read()
 
+xAxis = input("Enter the stat you want for the x-axis: ").upper()
+yAxis = input("Enter the stat you want for the y-axis: ").upper()
+
+abbreviations = {
+    "GAMES PLAYED": "GP",
+    "GP": "GP",
+    "GOALS": "G",
+    "G": "G",
+    "ASSISTS": "A",
+    "A": "A",
+    "POINTS": "PTS",
+    "PTS": "PTS",
+    "PLUS/MINUS": "+/-",
+    "+/-": "+/-",
+    "PENALTY MINUTES": "PIM",
+    "PIM": "PIM",
+    "POINT SHARES": "PS",
+    "PS": "PS",
+    "EVEN STRENGTH GOALS": "EV",
+    "POWER PLAY GOALS": "PP",
+    "PP": "PP",
+    "SHORT HANDED GOALS": "SH",
+    "SH": "SH",
+    "GAME WINNING GOALS": "GW",
+    "GW": "GW",
+}
+
+if xAxis in abbreviations:
+    xAxis = abbreviations[xAxis]
+if yAxis in abbreviations:
+    yAxis = abbreviations[yAxis]
+
 # Plotting the data
 for i in range(len(csv_stats)):
-    plt.scatter(csv_stats['GP'][i], csv_stats['G'][i])  # Plot each point
-    plt.text(csv_stats['GP'][i], csv_stats['G'][i], csv_stats['Player'][i])  # Label each point
+    plt.scatter(csv_stats[xAxis][i], csv_stats[yAxis][i])  # Plot each point
+    plt.text(csv_stats[xAxis][i], csv_stats[yAxis][i], csv_stats['Player'][i])  # Label each point
     
-plt.title('Goals per Game')
-plt.xlabel('Games Played')
-plt.ylabel('Goals')
-plt.savefig("GPG.png")  # Save the plot as a PNG file
+plt.title(yAxis + ' vs ' + xAxis)
+plt.xlabel(xAxis)
+plt.ylabel(yAxis)
+plt.savefig(yAxis + '_vs_' + xAxis + '.png')  # Save the plot as a PNG file
 plt.show()
